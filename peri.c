@@ -290,7 +290,7 @@ static void peri_device_release(struct device *dev)
 {
 	complete(&device_release);
 }
-,
+
 static struct platform_device peri_device = {
 	.name		= "peri-device",
 	.id		= -1,
