@@ -19,9 +19,9 @@ peri_hedelek(struct device *d, struct device_attribute *a, char *buf)
 
 static ssize_t
 peri_set_hedelek(struct device *d,
-				 struct device_attribute *a,
-				 const char *buf,
-				 size_t count)
+		 struct device_attribute *a,
+		 const char *buf,
+		 size_t count)
 {
 	return count;
 }
@@ -176,8 +176,10 @@ peri_temp_write(struct device *dev, u32 attr, int channel, long val)
 }
 
 static umode_t
-peri_is_visible(const void *data, enum hwmon_sensor_types type, u32 attr,
-			int channel)
+peri_is_visible(const void *data,
+		enum hwmon_sensor_types type,
+		u32 attr,
+		int channel)
 {
 	switch (type) {
 	case hwmon_chip:
@@ -196,8 +198,11 @@ peri_is_visible(const void *data, enum hwmon_sensor_types type, u32 attr,
 static const char input_label[] = "PERI";
 
 static int
-peri_read_string(struct device *dev, enum hwmon_sensor_types type, u32 attr,
-		    int channel, const char **buf)
+peri_read_string(struct device *dev,
+		 enum hwmon_sensor_types type,
+		 u32 attr,
+		 int channel,
+		 const char **buf)
 {
 	if (type == hwmon_in && attr == hwmon_in_label) {
 		*buf = input_label;
@@ -208,8 +213,11 @@ peri_read_string(struct device *dev, enum hwmon_sensor_types type, u32 attr,
 }
 
 static int
-peri_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
-							int channel, long *val)
+peri_read(struct device *dev,
+	  enum hwmon_sensor_types type,
+	  u32 attr,
+	  int channel,
+	  long *val)
 {
 	switch (type) {
 	case hwmon_chip:
@@ -226,8 +234,11 @@ peri_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
 }
 
 static int
-peri_write(struct device *dev, enum hwmon_sensor_types type, u32 attr,
-							int channel, long val)
+peri_write(struct device *dev,
+	   enum hwmon_sensor_types type,
+	   u32 attr,
+	   int channel,
+	   long val)
 {
 	switch (type) {
 	case hwmon_temp:
@@ -259,10 +270,10 @@ static int peri_probe(struct platform_device *pd)
 	special_groups[i++] = &hedelek_group;
 	special_groups[i] = 0;
 	monmon = hwmon_device_register_with_info(&pd->dev,
-						    "peri",
-						    pd,
-						    &peri_chip_info,
-						    special_groups);
+						 "peri",
+						 pd,
+						 &peri_chip_info,
+						 special_groups);
 	if (IS_ERR(monmon)) {
 		ret = PTR_ERR(monmon);
 		pr_err("Unable to register hwmon device: %d\n", ret);
